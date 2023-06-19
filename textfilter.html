@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Conversion</title>
+</head>
+<body>
+    <h1>Data Conversion</h1>
+    <textarea id="inputData" rows="10" cols="30" placeholder="Enter data here..."></textarea>
+    <br>
+    <button onclick="convertData()">Convert Data</button>
+    <br><br>
+    <textarea id="outputData" rows="10" cols="30" readonly></textarea>
+
+    <script>
+        function convertData() {
+            var input = document.getElementById("inputData").value;
+            // Split by newline
+            var lines = input.split('\n');
+            // Remove numbers and full stops
+            for (var i = 0; i < lines.length; i++) {
+                lines[i] = lines[i].replace(/[0-9]+\.\s*/g, '').replace(/\./g, '');
+            }
+            // Join by semi-colon
+            var output = lines.join(';');
+            document.getElementById("outputData").value = output;
+        }
+    </script>
+</body>
+</html>
