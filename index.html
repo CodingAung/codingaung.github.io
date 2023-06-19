@@ -2,14 +2,22 @@
 <html>
 <head>
     <title>Data Conversion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Data Conversion</h1>
-    <textarea id="inputData" rows="10" cols="30" placeholder="Enter data here..."></textarea>
-    <br>
-    <button onclick="convertData()">Convert Data</button>
-    <br><br>
-    <textarea id="outputData" rows="10" cols="30" readonly></textarea>
+    <div class="container mt-5">
+        <h1>Data Conversion</h1>
+        <div class="form-group">
+            <label for="inputData">Input Data:</label>
+            <textarea id="inputData" class="form-control" rows="10" placeholder="Enter data here..."></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="convertData()">Convert Data</button>
+        <div class="form-group mt-3">
+            <label for="outputData">Output Data:</label>
+            <textarea id="outputData" class="form-control" rows="10" readonly></textarea>
+        </div>
+        <button class="btn btn-success" onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
 
     <script>
         function convertData() {
@@ -23,6 +31,13 @@
             // Join by semi-colon
             var output = lines.join(';');
             document.getElementById("outputData").value = output;
+        }
+
+        function copyToClipboard() {
+            var outputData = document.getElementById("outputData");
+            outputData.select();
+            document.execCommand("copy");
+            alert("Copied the text: " + outputData.value);
         }
     </script>
 </body>
